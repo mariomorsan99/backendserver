@@ -1,0 +1,24 @@
+
+instalacion de express
+https://expressjs.com/es/starter/installing.html
+
+instalacion de mongo db
+https://www.mongodb.com/download-center/community
+
+https://robomongo.org/
+
+instalacion de moongose para conectarnos ala bd con node js
+https://mongoosejs.com/
+
+para obtener y validar un body 
+https://www.npmjs.com/package/body-parser
+
+
+comandos
+
+npm start  lanza express en nuestro porjecto nodejs
+
+npm app lanza nuestro proyecto sin express
+
+
+git repo https://github.com/mariomorsan99/backendserver
