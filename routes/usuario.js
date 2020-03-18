@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt');
 
 var Usuario = require('../models/usuario');
 
+var mdAutentication = require('../middlewares/autenticacion');
+
 //Get Usuarios
 app.get('/', (request, resp, next) => {
     Usuario.find({}, 'nombre email img role').exec(
@@ -22,8 +24,10 @@ app.get('/', (request, resp, next) => {
         });
 });
 
+
+
 //Actualizar usuario
-app.put('/:id', (req, resp) => {
+app.put('/:id', mdAutentication.verificaToken, (req, resp) => {
     var id = req.params.id;
     var body = req.body;
     Usuario.findById(id, (err, usuario) => {
@@ -70,7 +74,7 @@ app.put('/:id', (req, resp) => {
 })
 
 //Eliminar Usuario por ID
-app.delete('/:idUsuario', (req, resp) => {
+app.delete('/:idUsuario', mdAutentication.verificaToken, (req, resp) => {
 
     var id = req.params.idUsuario;
 
@@ -101,7 +105,8 @@ app.delete('/:idUsuario', (req, resp) => {
 });
 
 //Crear un nuevo usuario
-app.post('/', (request, resp) => {
+app.post('/', mdAutentication.verificaToken, (request, resp) => {
+
     var body = request.body;
     var usuario = new Usuario({
         nombre: body.nombre,
@@ -122,7 +127,8 @@ app.post('/', (request, resp) => {
         }
         resp.status(201).json({
             ok: true,
-            usuario: usuarioGuardado
+            usuario: usuarioGuardado,
+            token: request.usuario
         });
 
     });
