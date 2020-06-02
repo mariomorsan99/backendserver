@@ -27,6 +27,8 @@ var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
 var hospitalesRoutes = require('./routes/hospital');
 var medicosRoutes = require('./routes/medico');
+var busquedaRoutes = require('./routes/busqueda');
+var uploadRoutes = require('./routes/upload');
 var mongoose = require('mongoose');
 
 //conexion a la base de datos
@@ -42,6 +44,8 @@ app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
 app.use('/hospitales', hospitalesRoutes);
 app.use('/medicos', medicosRoutes);
+app.use('/busqueda', busquedaRoutes);
+app.use('/upload', uploadRoutes);
 app.use('/', appRoutes);
 
 

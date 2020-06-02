@@ -104,8 +104,8 @@ app.delete('/:idUsuario', mdAutentication.verificaToken, (req, resp) => {
     });
 });
 
-//Crear un nuevo usuario
-app.post('/', mdAutentication.verificaToken, (request, resp) => {
+//Crear un nuevo usuario mdAutentication.verificaToken,
+app.post('/', (request, resp) => {
 
     var body = request.body;
     var usuario = new Usuario({

@@ -13,6 +13,9 @@ https://mongoosejs.com/
 para obtener y validar un body 
 https://www.npmjs.com/package/body-parser
 
+instala nodemon
+npm install -g nodemon
+
 
 comandos
 
