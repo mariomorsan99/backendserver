@@ -102,7 +102,6 @@ function SubirPorTipo(tipo, id, nombreArchivo, resp) {
                             return
                         }
 
-                        //file removed
                     });
                 }
 
@@ -146,21 +145,26 @@ function SubirPorTipo(tipo, id, nombreArchivo, resp) {
                 }
 
                 medicos.img = nombreArchivo;
-                medicos.save((err, medicoActualizado) => {});
+                medicos.save((err, medicoActualizado) => {
 
-                if (err) {
-                    return resp.status(400).json({
-                        mensaje: 'error al actualizar imagen',
+                    if (err) {
+                        return resp.status(400).json({
+                            mensaje: 'error al actualizar imagen',
+                            ok: true,
+                            errors: err
+                        });
+                    }
+
+                    return resp.status(200).json({
+                        mensaje: 'Imagen de medico actualizada',
                         ok: true,
-                        errors: err
+                        medico: medicoActualizado
                     });
-                }
 
-                return resp.status(200).json({
-                    mensaje: 'Imagen de medico actualizada',
-                    ok: true,
-                    medico: medicoActualizado
+
                 });
+
+
             });
             break;
 
@@ -179,21 +183,25 @@ function SubirPorTipo(tipo, id, nombreArchivo, resp) {
                 }
 
                 hospitales.img = nombreArchivo;
-                hospitales.save((err, hospitalActualizado) => {});
+                hospitales.save((err, hospitalActualizado) => {
 
-                if (err) {
-                    return resp.status(400).json({
-                        mensaje: 'error al actualizar imagen',
+                    if (err) {
+                        return resp.status(400).json({
+                            mensaje: 'error al actualizar imagen',
+                            ok: true,
+                            errors: err
+                        });
+                    }
+
+                    return resp.status(200).json({
+                        mensaje: 'Imagen de hospital actualizada',
                         ok: true,
-                        errors: err
+                        medico: hospitalActualizado
                     });
-                }
 
-                return resp.status(200).json({
-                    mensaje: 'Imagen de hospital actualizada',
-                    ok: true,
-                    medico: hospitalActualizado
                 });
+
+
 
 
 

@@ -20,6 +20,13 @@ app.use(function(req, res, next) {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+var serveIndex = require('serve-index');
+app.use(express.static(__dirname + '/'))
+app.use('/uploads', serveIndex(__dirname + '/uploads'));
+
+
+
+
 
 //importar rutas
 var appRoutes = require('./routes/app');
@@ -29,6 +36,7 @@ var hospitalesRoutes = require('./routes/hospital');
 var medicosRoutes = require('./routes/medico');
 var busquedaRoutes = require('./routes/busqueda');
 var uploadRoutes = require('./routes/upload');
+var imagenesRoutes = require('./routes/imagen');
 var mongoose = require('mongoose');
 
 //conexion a la base de datos
@@ -46,6 +54,7 @@ app.use('/hospitales', hospitalesRoutes);
 app.use('/medicos', medicosRoutes);
 app.use('/busqueda', busquedaRoutes);
 app.use('/upload', uploadRoutes);
+app.use('/img', imagenesRoutes);
 app.use('/', appRoutes);
 
 
