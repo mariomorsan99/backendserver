@@ -25,3 +25,17 @@ npm app lanza nuestro proyecto sin express
 
 
 git repo https://github.com/mariomorsan99/backendserver
+
+
+
+para la autenticacion con el login de google entrara 
+
+google cloud platform 
+
+copiar el id cliente de la aplicacion 
+
+
+y en el proyecto lite server ejecutar para obtener el token para colocarlo en el postman
+
+
+
