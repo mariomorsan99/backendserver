@@ -9,7 +9,9 @@ var cors = require('cors');
 app.use(cors())
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
+
+    // res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, OPTION, DELETE");
     next();
@@ -37,6 +39,7 @@ var medicosRoutes = require('./routes/medico');
 var busquedaRoutes = require('./routes/busqueda');
 var uploadRoutes = require('./routes/upload');
 var imagenesRoutes = require('./routes/imagen');
+var cacheRoutes = require('./routes/cache');
 var mongoose = require('mongoose');
 
 //conexion a la base de datos
@@ -55,6 +58,7 @@ app.use('/medicos', medicosRoutes);
 app.use('/busqueda', busquedaRoutes);
 app.use('/upload', uploadRoutes);
 app.use('/img', imagenesRoutes);
+app.use('/cache', cacheRoutes);
 app.use('/', appRoutes);
 
 

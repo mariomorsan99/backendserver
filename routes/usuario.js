@@ -8,7 +8,7 @@ var mdAutentication = require('../middlewares/autenticacion');
 
 //Get Usuarios
 app.get('/', (request, resp, next) => {
-    Usuario.find({}, 'nombre email img role').exec(
+    Usuario.find({}, 'nombre email img role google').exec(
         (err, usuarios) => {
             if (err) {
                 return resp.status(500).json({
