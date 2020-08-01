@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+    mongodb:
+        container_name: mongodb #nombre del container
+        image: mongo          #nombre de la imagen
+        volumes: 
+            - ./data:/data/db  #directorio de la base de datos
+        ports: 
+            - "27017:27017"     #puerto que se expodra
+    app:
+        container_name: backtest  
+        restart: always        #indica que el conteiner se reiniciara en caso de fayos
+        build: .               #indica que tomara el paquete apartir de la ruta del directorio para crear el container
+        ports: 
+            - "3000:3000"       #puerto que se expondra paara la app
+        depends_on: 
+            - mongodb           #container del que dependera la aplicacion en caso de existir
+       
+        

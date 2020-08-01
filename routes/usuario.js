@@ -7,21 +7,34 @@ var Usuario = require('../models/usuario');
 var mdAutentication = require('../middlewares/autenticacion');
 
 //Get Usuarios
-app.get('/', (request, resp, next) => {
-    Usuario.find({}, 'nombre email img role google').exec(
-        (err, usuarios) => {
-            if (err) {
-                return resp.status(500).json({
-                    mensaje: 'Error cargando usuarios',
-                    ok: false,
-                    errors: err
-                });
-            }
-            resp.status(200).json({
-                ok: true,
-                usuarios: usuarios
+app.get('/', (req, resp, next) => {
+
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
+
+    Usuario.find({}, 'nombre email img role google')
+        .skip(desde)
+        .limit(5)
+        .exec(
+            (err, usuarios) => {
+                if (err) {
+                    return resp.status(500).json({
+                        mensaje: 'Error cargando usuarios',
+                        ok: false,
+                        errors: err
+                    });
+                }
+
+                Usuario.count({}, (err, conteo) => {
+
+                    resp.status(200).json({
+                        ok: true,
+                        usuarios: usuarios,
+                        total: conteo
+                    });
+
+                })
             });
-        });
 });
 
 

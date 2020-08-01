@@ -38,4 +38,8 @@ copiar el id cliente de la aplicacion
 y en el proyecto lite server ejecutar para obtener el token para colocarlo en el postman
 
 
+ejecutar mongo 
 
+cd to C:\Program Files\MongoDB\Server\3.2\bin>
+enter command mongod
+by default, mongodb server will start at port 27017

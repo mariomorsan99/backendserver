@@ -28,8 +28,6 @@ app.use('/uploads', serveIndex(__dirname + '/uploads'));
 
 
 
-
-
 //importar rutas
 var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
@@ -43,7 +41,15 @@ var cacheRoutes = require('./routes/cache');
 var mongoose = require('mongoose');
 
 //conexion a la base de datos
-mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, resp) => {
+// mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB', (err, resp) => {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log('conectado ala base de datos mongo: \x1b[32m%s\x1b[0m', 'online');
+// });
+
+//conexion a la base de datos cuando levantemos en docker asi enruta el nombre mongo docker al conteendor que tengamos 
+mongoose.connection.openUri('mongodb://mongo:27017/hospitalDB', (err, resp) => {
     if (err) {
         throw err;
     }
