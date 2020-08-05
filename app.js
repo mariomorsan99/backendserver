@@ -49,11 +49,32 @@ var mongoose = require('mongoose');
 // });
 
 //conexion a la base de datos cuando levantemos en docker asi enruta el nombre mongo docker al conteendor que tengamos 
-mongoose.connection.openUri('mongodb://mongo:27017/hospitalDB', (err, resp) => {
+// mongoose.connection.openUri('mongodb://mongo:27017/hospitalDB', (err, resp) => {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log('conectado ala base de datos mongo: \x1b[32m%s\x1b[0m', 'online');
+// });
+
+//cadena de conexion para cosmos mongo db
+var username = 'mongodbtesting'
+var password = 'yiQY7CnKfMXwurCX6pJn2MDghxgiGBDhnkfNyyVAIkihfNFvrepi29f0vL5OdweT6geAAJh9IFCyH3zyQFijjw==';
+const encodedPassword = encodeURIComponent("yiQY7CnKfMXwurCX6pJn2MDghxgiGBDhnkfNyyVAIkihfNFvrepi29f0vL5OdweT6geAAJh9IFCyH3zyQFijjw==");
+var host = 'mongodbtesting.mongo.cosmos.azure.com';
+var urlServer = `mongodb://${username}:${encodedPassword}@${host}:10255/?ssl=true`;
+
+//conexion a la base de datos
+mongoose.connection.openUri(urlServer, (err, resp) => {
     if (err) {
         throw err;
     }
     console.log('conectado ala base de datos mongo: \x1b[32m%s\x1b[0m', 'online');
+});
+
+
+var mongoClient = require("mongodb").MongoClient;
+mongoClient.connect("mongodb://mongodbtesting:yiQY7CnKfMXwurCX6pJn2MDghxgiGBDhnkfNyyVAIkihfNFvrepi29f0vL5OdweT6geAAJh9IFCyH3zyQFijjw%3D%3D@mongodbtesting.mongo.cosmos.azure.com:10255/?ssl=true&appName=@mongodbtesting@", function(err, client) {
+    client.close();
 });
 
 //Rutas
